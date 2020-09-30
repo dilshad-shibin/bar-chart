@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar Chart</title>
+</head>
+<script src="js/canvasjs.min.js"></script>
+
+<body>
+
+    <div id="chartContainer" style="height: 400px; width: 100%;margin-top: 40px;"></div>
+
+
+
+
+
+
+
+
+    <script>
+        window.onload = function() {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                    text: ""
+                },
+                axisY: {
+                    // title: "Billions of Barrels",
+                    titleFontColor: "#35415c",
+                    lineColor: "#35415c",
+                    labelFontColor: "#35415c",
+                    tickColor: "#35415c"
+                },
+                toolTip: {
+                    shared: true
+                },
+                legend: {
+                    cursor: "pointer",
+                    itemclick: toggleDataSeries
+                },
+                dataPointMaxWidth: 20,
+                data: [{
+                    type: "column",
+                    color: "#01b1af",
+                    name: "Sales",
+                    legendText: "Sales",
+                    showInLegend: true,
+                    dataPoints: [{
+                        label: "Jan 2020",
+                        y: 160000
+                    }, {
+                        label: "Feb 2020",
+                        y: 51000
+                    }, {
+                        label: "Mar 2020",
+                        y: 140000
+                    }, {
+                        label: "Apr 2020",
+                        y: 210000
+                    }, {
+                        label: "May 2020",
+                        y: 140000
+                    }, {
+                        label: "Jun 2020",
+                        y: 152000
+                    }, {
+                        label: "Jul 2020",
+                        y: 51500
+                    }]
+                }, {
+                    type: "column",
+                    color: "#50a1f0",
+                    name: "purchases",
+                    legendText: "purchases",
+                    axisYType: "secondary",
+                    showInLegend: true,
+                    dataPoints: [{
+                        label: "Jan 2020",
+                        y: 100000
+                    }, {
+                        label: "Feb 2020",
+                        y: 110000
+                    }, {
+                        label: "Mar 2020",
+                        y: 52000
+                    }, {
+                        label: "Apr 2020",
+                        y: 220000
+                    }, {
+                        label: "May 2020",
+                        y: 148000
+                    }, {
+                        label: "Jun 2020",
+                        y: 120000
+                    }, {
+                        label: "Jul 2020",
+                        y: 120000
+                    }]
+                }]
+            });
+            chart.render();
+
+            function toggleDataSeries(e) {
+                if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                } else {
+                    e.dataSeries.visible = true;
+                }
+                chart.render();
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>
